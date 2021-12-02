@@ -11,6 +11,11 @@ public class GreetingAppController {
     @Autowired
     GreetingAppService greetingAppService;
 
+    /**
+     *
+     * @param greetingDto
+     * @return
+     */
     @GetMapping("")
     public GreetingDto sayHello(@RequestBody GreetingDto greetingDto){
         return greetingDto;
@@ -20,5 +25,10 @@ public class GreetingAppController {
     @GetMapping("/message")
     public String getGreeting(){
         return greetingAppService.greet();
+    }
+
+    @GetMapping(value = {"/greetmessage"})
+    public String helloMessage(@RequestParam(value ="firstName", defaultValue ="") String firstName, @RequestParam (value ="lastName", defaultValue ="") String lastName) {
+        return greetingAppService.getGreeting(firstName,lastName);
     }
 }
