@@ -1,6 +1,7 @@
 package com.bridgelabz.controller;
 
 import com.bridgelabz.Dto.GreetingDto;
+import com.bridgelabz.model.Greetings;
 import com.bridgelabz.service.GreetingAppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,18 @@ public class GreetingAppController {
     }
 
     @GetMapping(value = {"/greetmessage"})
-    public String helloMessage(@RequestParam(value ="firstName", defaultValue ="") String firstName, @RequestParam (value ="lastName", defaultValue ="") String lastName) {
+    public String helloMessage(@RequestParam(value ="firstName", defaultValue ="") String firstName,
+                               @RequestParam (value ="lastName", defaultValue ="") String lastName) {
         return greetingAppService.getGreeting(firstName,lastName);
+    }
+
+    @PostMapping(value = "save")
+    public String saveGreeting(@RequestBody Greetings message){
+        return  greetingAppService.saveGreeting(message);
+    }
+
+    @GetMapping("/findgreet")
+    public Greetings getGreetingById(@RequestParam int id) {
+        return greetingAppService.getGreetingById(id);
     }
 }
