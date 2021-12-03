@@ -41,4 +41,8 @@ public class GreetingAppService {
     public List<Greetings> getall() {
         return greetingsAppRepository.findAll();
     }
+
+    public String editGreeting(Greetings message) {
+        return greetingsAppRepository.save(message).toString();
+    }
 }

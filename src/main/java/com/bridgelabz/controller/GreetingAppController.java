@@ -50,4 +50,9 @@ public class GreetingAppController {
     public List<Greetings> getallmessages(){
         return greetingAppService.getall();
     }
+
+    @PutMapping(value = "save")
+    public String editGreeting(@RequestBody Greetings message){
+        return  greetingAppService.editGreeting(message);
+    }
 }
