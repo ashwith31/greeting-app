@@ -45,4 +45,12 @@ public class GreetingAppService {
     public String editGreeting(Greetings message) {
         return greetingsAppRepository.save(message).toString();
     }
+
+    public void deleteGreeting(int id) {
+        Optional<Greetings> greetingsEntity = greetingsAppRepository.findById(id);
+        if(greetingsEntity.isPresent()){
+            greetingsAppRepository.delete(greetingsEntity.get());
+        }else
+            System.out.println("Invalid id");
+    }
 }

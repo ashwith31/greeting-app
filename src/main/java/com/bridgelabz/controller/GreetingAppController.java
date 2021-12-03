@@ -55,4 +55,9 @@ public class GreetingAppController {
     public String editGreeting(@RequestBody Greetings message){
         return  greetingAppService.editGreeting(message);
     }
+
+    @DeleteMapping("delete")
+    public void deleteGreeting(@RequestParam int id){
+        greetingAppService.deleteGreeting(id);
+    }
 }
